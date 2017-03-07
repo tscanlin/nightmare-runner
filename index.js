@@ -1,6 +1,21 @@
 const Nightmare = require('nightmare')
-const config = require('./configs/default.js')
 
+// Config.
+let configFile = './configs/default.js'
+if (process.argv.length) {
+  for (var i = 0; i < process.argv.length; i++) {
+    switch (process.argv[i]) {
+      case '--config':
+        configFile = process.argv[i + 1]
+      break;
+      default:
+      break;
+    }
+  }
+}
+const config = require(configFile)
+
+// Run function.
 function run(conf) {
   const windowKeys = Object.keys(conf.windows)
 
@@ -18,29 +33,32 @@ function run(conf) {
     }, nightmare)
 
     return nightmare
-    // return nightmare.then((d) => {
-    //   console.log(d);
-    // })
   })
 
-  // console.log(tasks);
+  return new Promise((resolve, reject) => {
+    let resultArray = []
 
-  // Iterate through tasks.
-  const results = tasks
-    // .concat(() => Promise.resolve())
+    // Iterate through tasks.
+    const results = tasks
+    // Empty promise at the end for an extra reduce iteration.
+    .concat(() => Promise.resolve())
     .reduce((p, c) => {
-      return p.then((d) => {
-        // console.log(p);
-        // console.log(c);
+      return p.then((data) => {
+        // Add resolved promise data to the array.
+        data && resultArray.push(data)
         return c
+      }, (err) => {
+        err && resultArray.push(err)
       })
     }, Promise.resolve(false))
     .then((d) => {
-      console.log(d);
-      return d
+      resolve(resultArray)
     })
+
+    return results
+  }).then((data) => {
+    console.log(data);
+  })
 }
 
 run(config)
-
-console.log(config);
