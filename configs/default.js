@@ -83,14 +83,11 @@ const altActions = [
 
 module.exports = {
   debug: true,
-  // concurrency: 1,
   // order: ['win1'],
   windows: {
     win1: win,
     win2: Object.assign({}, win, {
       actions: altActions
     }),
-    // win2:
-    // win3:
   }
 }
