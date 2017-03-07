@@ -1,0 +1,23 @@
+{
+  "name": "nightmare-runner",
+  "version": "1.0.0",
+  "description": "Nightmare.js runner",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tscanlin/nightmare-runner.git"
+  },
+  "keywords": [
+    "nightmare",
+    "runner"
+  ],
+  "author": "Tim Scanlin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tscanlin/nightmare-runner/issues"
+  },
+  "homepage": "https://github.com/tscanlin/nightmare-runner#readme"
+}
