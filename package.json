@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/tscanlin/nightmare-runner/issues"
   },
-  "homepage": "https://github.com/tscanlin/nightmare-runner#readme"
+  "homepage": "https://github.com/tscanlin/nightmare-runner#readme",
+  "dependencies": {
+    "nightmare": "^2.10.0"
+  }
 }
