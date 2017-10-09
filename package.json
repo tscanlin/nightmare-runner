@@ -7,7 +7,9 @@
     "nightmare-runner": "index.js"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "v-patch": "npm version patch && git push --tags && npm publish && git push",
+    "v-minor": "npm version minor && git push --tags && npm publish && git push",
+    "v-major": "npm version major && git push --tags && npm publish && git push"
   },
   "repository": {
     "type": "git",

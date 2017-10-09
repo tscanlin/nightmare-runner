@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 
 const Nightmare = require('nightmare')
+const path = require('path')
+const rootPath = path.resolve('.')
 
 // Config.
 let configFile = './configs/default.js'
@@ -9,16 +11,18 @@ if (process.argv.length) {
     switch (process.argv[i]) {
       case '--config':
         configFile = process.argv[i + 1]
-      break;
+        break
       default:
-      break;
+        break
     }
   }
 }
-const config = require(configFile)
+
+const config = require(path.join(rootPath, configFile))
+run(config)
 
 // Run function.
-function run(conf) {
+function run (conf) {
   const windowKeys = Object.keys(conf.windows)
 
   // Make tasks.
@@ -59,8 +63,6 @@ function run(conf) {
 
     return results
   }).then((data) => {
-    console.log(data);
+    console.log(data)
   })
 }
-
-run(config)
